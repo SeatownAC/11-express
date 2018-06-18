@@ -5,24 +5,17 @@
 const storage = require('../lib/storage/data-store.js');
 const uuid = require('uuid/v1');
 
-class People{
+class Cookie{ //formerly class Note
 
-  /**
-   * Simple constructor function for our people model
-   * @param config
-   */
+
   constructor(config) {
     this.id = uuid();
-    this.createdOn = new Date();
-    this.name = config && config.title || '';
-    this.address = config && config.address || '';
+    this.madeOn = new Date();
+    this.flavor = config && config.flavor || '';
+    this.size = config && config.size || '';
   }
 
-  /**
-   * Save an instance of a people
-   * Note that it calls on our external storage mechanism to do this operation
-   * @returns {*}
-   */
+ 
   save() {
     return storage.save(this);
   }
@@ -62,4 +55,4 @@ class People{
 
 }
 
-module.exports = People;
+module.exports = Cookie;
