@@ -23,6 +23,7 @@ describe('Writing Response Tests For Cookie.js', ()=> {
         .catch(res => {
           expect(res.status).toBe(404);
           
+        });
     });
   
     it('404 response on a GET, should respond with "not found" for valid requests made with an id that was not found', () => {
@@ -33,11 +34,6 @@ describe('Writing Response Tests For Cookie.js', ()=> {
         expect(err.response.text).toBe('not found');
         expect(err.status).toBe(404);
       });
-
-
-  
-      
-  
     });
 
     it('test 400 on a GET, should respond with "bad request" if no id was provided in the request', () => {
@@ -47,13 +43,12 @@ describe('Writing Response Tests For Cookie.js', ()=> {
         expect(res.status).toBe(400);
         expect(res.response.text).toEqual('bad request');
         done();
-  
-    
-    })
+        });
+    });
 
     it('test 200 on a GET, should contain a response body for a request made with a valid id', () => {
         return superagent
-      .post('http://localhost:3001/api/v1/cookie/')
+      .get('http://localhost:3001/api/v1/cookie/')
       .send({
         flavor: 'Oatmeal',
         size: 'Large',
@@ -63,10 +58,8 @@ describe('Writing Response Tests For Cookie.js', ()=> {
         expect(res.body).toBeDefined();
       })
       .catch(res => console.error(res));
-  
-       
-    
-    })
+    });
+
     it('test 400 on a POST, it should respond with "bad request" if no request body was provided or the body was invalid', () => {
         return superagent
       .post('http://localhost:3001/api/v1/cookie')
@@ -75,8 +68,8 @@ describe('Writing Response Tests For Cookie.js', ()=> {
         expect(err.status).toBe(400);
 
   
-    
-    })
+      });
+    });
 
     it('test 200 on a POST, it should respond with the body content for a post request with a valid body', () => {
         return superagent
@@ -92,20 +85,6 @@ describe('Writing Response Tests For Cookie.js', ()=> {
       })
       .catch(res => console.error(res));
   
-    })
+    });
+});
 
-    
-
-   
-  
-  
-  });
-
-//   write a test to ensure that your api returns a status code of 404 for routes that have not been registered
-// write tests to ensure the /api/simple-resource-name endpoint responds as described for each condition below:
-// GET: test 404, it should respond with 'not found' for valid requests made with an id that was not found
-// GET: test 400, it should respond with 'bad request' if no id was provided in the request
-// GET: test 200, it should contain a response body for a request made with a valid id
-// POST: test 400, it should respond with 'bad request' if no request body was provided or the body was invalid
-// POST: test 200, it should respond with the body content for a post request with a valid body
-  
