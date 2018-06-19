@@ -1,7 +1,7 @@
 'use strict';
 
 //import express from 'express';
-const express = require(express);
+const express = require('express');
 let app = express();
 
 // Express body and URL parsers
